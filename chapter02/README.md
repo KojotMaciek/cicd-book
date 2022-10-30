@@ -11,7 +11,7 @@
 - docker build -t flask .
 
 # Run:
-- docker run -d -p 8080:5000 --name flaskAPP flask:0.2
+- docker run -d -p 8080:5000 --name flaskAPP flask
 
 # Access:
 - from local machine browser: http://localhost:8080
