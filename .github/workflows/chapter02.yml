@@ -22,9 +22,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
+    - name: Set outputs
+      id: vars
+      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+    - name: Check outputs
+      run: echo ${{ steps.vars.outputs.sha_short }}    
+        
     - name: Build and push Docker images
       uses: docker/build-push-action@v3
       with:
         context: chapter02
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/hello:0.1
+        tags: ${{ secrets.DOCKER_USERNAME }}/hello:${{ steps.vars.outputs.sha_short }}
