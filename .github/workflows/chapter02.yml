@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file chapter02/Dockerfile --tag hello:$(date +%s)
+      run: cd chapter02 && docker build . --file Dockerfile --tag hello:$(date +%s)
