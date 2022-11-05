@@ -11,11 +11,19 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      KOSLI_API_TOKEN: ${{ secrets.MY_KOSLI_API_TOKEN }}
+      KOSLI_OWNER: KojotMaciek
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
-      
+
+    - name: setup kosli
+      uses: kosli-dev/setup-cli-action@v1
+    - name: declare pipeline
+      run: kosli pipeline declare --pipeline docker-hello -t pull-request,artifact
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
