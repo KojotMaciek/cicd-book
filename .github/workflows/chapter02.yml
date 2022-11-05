@@ -43,5 +43,5 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/hello:${{ steps.vars.outputs.sha_short }}
 
-    - name: Verify image
-      run: docker image ls
+    - name: Report image to Kosli
+      run: kosli pipeline artifact report creation ${{ secrets.DOCKER_USERNAME }}/hello:${{ steps.vars.outputs.sha_short }} -t docker -p docker-hello
