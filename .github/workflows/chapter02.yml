@@ -42,3 +42,6 @@ jobs:
         context: chapter02
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/hello:${{ steps.vars.outputs.sha_short }}
+
+    - name: Verify image
+      run: docker image ls
